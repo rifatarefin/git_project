@@ -263,6 +263,7 @@ int main()
     }
     for(i=0;i<length;i++)printf("%d",list[i]);
     clearList ();
+    printf("\n");
     return 0;
 
 }
