@@ -58,25 +58,26 @@ public:
     void removeAllElements();
     void removeElementAt(int index);
     Element set(int index, Element element);
-    //int size();
+    int size();
+
     string toString();
 };
 
 
 void Vector::add(Element e)
 {
-    if(size<getCapacity ())this->elements[size++].setValue (e.getValue ());
+    if(VectorBase::size<getCapacity ())this->elements[(VectorBase::size)++].setValue (e.getValue ());
 
 }
 
 void Vector::add(int index, Element element)
 {
-    if(index>=0&&index<=size && size<getCapacity ())
+    if(index>=0&&index<=VectorBase::size && VectorBase::size<getCapacity ())
     {
-        for(int i=size;i>index;i--)elements[i].setValue (elements[i-1].getValue ());
+        for(int i=VectorBase::size;i>index;i--)elements[i].setValue (elements[i-1].getValue ());
 
         this->elements[index].setValue (element.getValue ());
-        size++;
+        VectorBase::size++;
     }
 }
 
@@ -88,13 +89,13 @@ int Vector::capacity()
 void Vector::clear()
 {
     delete elements;
-    size=0;
+    VectorBase::size=0;
 }
 
 bool Vector::contains(Element e)
 {
     int i;
-    for(i=0;i<size;i++)
+    for(i=0;i<VectorBase::size;i++)
     {
         if(elements[i].getValue ()==e.getValue ())return true;
     }
@@ -119,7 +120,7 @@ Element Vector::get(int index)
 int Vector::indexOf(Element e)
 {
     int i;
-    for(i=0;i<size;i++)
+    for(i=0;i<VectorBase::size;i++)
     {
         if(elements[i].getValue ()==e.getValue ())return i;
     }
@@ -133,18 +134,18 @@ void Vector::insertElementAt(Element obj, int index)
 
 bool Vector::isEmpty()
 {
-    return size==0;
+    return VectorBase::size==0;
 }
 
 Element Vector::lastElement()
 {
-    return elementAt (size-1);
+    return elementAt (VectorBase::size-1);
 }
 
 int Vector::lastIndexOf(Element o)
 {
     int i;
-    for(i=size-1;i>=0;i--)
+    for(i=VectorBase::size-1;i>=0;i--)
     {
         if(elements[i].getValue ()==o.getValue ())return i;
     }
@@ -153,13 +154,13 @@ int Vector::lastIndexOf(Element o)
 
 Element Vector::remove(int index)
 {
-    if(index>=0 && index<size-1)
+    if(index>=0 && index<VectorBase::size-1)
     {
-        for(int i=index;i<size-1;i++)
+        for(int i=index;i<VectorBase::size-1;i++)
         {
             elements[i].setValue (elements[i+1].getValue ());
         }
-        size--;
+        VectorBase::size--;
     }
 
 }
@@ -178,7 +179,7 @@ bool Vector::remove(Element o)
 void Vector::removeAllElements()
 {
     delete elements;
-    size=0;
+    VectorBase::size=0;
 }
 
 void Vector::removeElementAt(int index)
@@ -194,12 +195,12 @@ Element Vector::set(int index, Element element)
 string Vector::toString()
 {
     string s;
-    if(size>0)
+    if(VectorBase::size>0)
     {
         char ch[100000];
         itoa (elements[0].getValue (),ch,10);
         s=string(ch);
-        for(int i=1;i<size;i++)
+        for(int i=1;i<VectorBase::size;i++)
         {
             itoa (elements[i].getValue (),ch,10);
             s=s+", "+string(ch);
@@ -210,10 +211,10 @@ string Vector::toString()
 
 }
 
-//int Vector::size()
-//{
-//    return getSize ();
-//}
+int Vector::size()
+{
+    return getSize ();
+}
 
 // a very simple main
 int main() {
