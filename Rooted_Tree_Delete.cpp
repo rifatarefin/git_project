@@ -67,6 +67,12 @@ int insertItem(struct treeNode * node, int oldItem, int newItem, int childType)
     //finally, return NULL because item was not found
     return FALSE_VALUE ;
 }
+int nodeNum(struct treeNode *node)
+{
+    if(node==0)return 0;
+    return nodeNum(node->left)+nodeNum(node->right)+1;
+}
+
 int deleteItem(struct treeNode *Node,int item)
 {
     if(Node==0)return 0;
@@ -103,6 +109,7 @@ int main()
     while(1)
     {
         printf("1.Insert Root. 2. Insert Node. 3. Print. 4. Delete Item\n");
+        printf("5. Number of Nodes\n");
         int ch;
         scanf("%d",&ch);
         if(ch==1)
@@ -130,6 +137,10 @@ int main()
             printf("ITEM?\n");
             scanf("%d",&item);
             deleteItem (root,item);
+        }
+        else if(ch==5)
+        {
+            printf("%d\n",nodeNum(root));
         }
     }
 
