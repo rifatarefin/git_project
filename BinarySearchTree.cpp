@@ -148,6 +148,7 @@ struct treeNode *ancestor(struct treeNode *node,int item)
 int deleteItem(struct treeNode * node, int item)
 {
     //write your code here, return TRUE, FALSE
+    node=searchItem (root,item);
     if(node==0)return FALSE_VALUE;
     if(node->left==0 && node->right==0)
     {
@@ -211,7 +212,7 @@ int deleteItem(struct treeNode * node, int item)
             last=last->left;
         }
         int value=prev->item;
-        deleteItem (prev,value);
+        deleteItem (root,value);
         node->item=value;
         return TRUE_VALUE;
 
@@ -301,8 +302,8 @@ int main(void)
         {
             int item;
             scanf ("%d",&item);
-            struct treeNode *temp=searchItem (root,item);
-            deleteItem (temp,item);
+            //struct treeNode *temp=searchItem (root,item);
+            deleteItem (root,item);
         }
         else if(ch==3)
         {
